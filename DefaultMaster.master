@@ -1,0 +1,58 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="DefaultMaster.master.cs" Inherits="DefaultMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Dat Nguyen</title>
+
+    <link href="Styles/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/main.css" rel="stylesheet" type="text/css" />
+       
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+
+    <asp:ContentPlaceHolder id="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="./" class="navbar-brand list-inline">
+                        <img src="Images/Logo/brand" title="Logo" alt="Dat Nguyen Logo" />
+                        <p>Dat Nguyen</p>
+                    </a>
+                </div>
+                
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="./">Home</a></li>
+                        <li><a href="About.aspx">About</a></li>
+                        <li><a href="Contact.aspx">Contact</a></li>
+                        <li><a href="CodeExample.aspx">Code Example</a></li>                      
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid main-content">
+            <asp:ContentPlaceHolder id="MainContent" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <footer class="container-fluid">
+            <hr />
+            <p>&copy; <%: DateTime.Now.Year %> - Dat Nguyen</p>
+        </footer>
+    </form>
+</body>
+</html>
