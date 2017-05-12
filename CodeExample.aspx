@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="CodeExample.aspx.cs" Inherits="Default2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
-    <link href="Styles/Highlight/arduino-light.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/arduino-light.css" rel="stylesheet" type="text/css" />
 
     <script src="Scripts/highlight.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
