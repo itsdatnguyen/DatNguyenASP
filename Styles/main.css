@@ -1,3 +1,14 @@
-﻿.main-content{
-    padding-top: 50px;
+﻿.list-inline{
+    padding: 10px;
+}
+
+.list-group-item{
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+}
+
+.list-group-item h3{
+    padding: 0px;
+    margin: 0px;
 }

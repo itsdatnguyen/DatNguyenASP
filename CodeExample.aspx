@@ -17,7 +17,7 @@
             </p>
         </div>
     <div class="col-md-6">
-            <h2>.cpp</h2>
+            <h2>GunComponent.cpp</h2>
             <pre>
 <code class="C++">#include "CatAndMouse.h"
 #include "GunComponent.h"
@@ -213,7 +213,7 @@ bool UGunComponent::CheckTimedReload()
         </div>
     
         <div class="col-md-6">
-            <h2>.h</h2>
+            <h2>GunComponent.h</h2>
             <pre>
 <code class="c++">#pragma once
 

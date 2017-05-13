@@ -19,7 +19,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
@@ -27,7 +27,6 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a href="./" class="navbar-brand list-inline">
-                        <img src="Images/Logo/brand" title="Logo" alt="Dat Nguyen Logo" />
                         <p>Dat Nguyen</p>
                     </a>
                 </div>
@@ -38,20 +37,37 @@
                         <li><a href="About.aspx">About</a></li>
                         <li><a href="Contact.aspx">Contact</a></li>
                         <li><a href="CodeExample.aspx">Code Example</a></li>                      
+                        <li><a href="Weather.aspx">Weather</a></li>                      
                     </ul>
                 </div>
             </div>
         </div>
 
-        <div class="container-fluid main-content">
-            <asp:ContentPlaceHolder id="MainContent" runat="server">
-        
-            </asp:ContentPlaceHolder>
+        <div class="main-content">
+            <asp:ContentPlaceHolder id="MainContent" runat="server"></asp:ContentPlaceHolder>
         </div>
 
         <footer class="container-fluid">
             <hr />
-            <p>&copy; <%: DateTime.Now.Year %> - Dat Nguyen</p>
+            <div class="container col-md-offset-2 col-md-8">
+                <ul class="list-inline">
+                    <li class="list-group-item"><a href="fuck"><h3>Biography</h3></a></li>
+                    <li class="list-group-item"><a><h3>Life</h3></a></li>
+                    <li class="list-group-item"><a><h3>Career</h3></a></li>
+                    <li class="list-group-item"><a><h3>Github</h3></a></li>
+                    <li class="list-group-item"><a><h3>LinkedIn</h3></a></li>
+                    <li class="list-group-item"><a><h3>Programming</h3></a></li>
+                    <li class="list-group-item"><a><h3>Music</h3></a></li>
+                    <li class="list-group-item"><a><h3>Business</h3></a></li>
+                    <li class="list-group-item"><a><h3>Aspirations</h3></a></li>
+                    <li class="list-group-item"><a><h3>Motivation</h3></a></li>
+                    <li class="list-group-item"><a><h3>Gaming</h3></a></li>
+                    <li class="list-group-item"><a><h3>Web Development</h3></a></li>
+                </ul>
+            </div>
+            <div class="container pull-left">
+                <p>&copy; <%: DateTime.Now.Year %> - Dat Nguyen</p>
+            </div>
         </footer>
     </form>
 </body>
