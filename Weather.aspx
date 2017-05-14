@@ -5,34 +5,36 @@
         .widget ul{
             display: inline-block;
         }
+        .widget img{
+            float: left;
+        }
         .widget ul li{
             width: 100%;
         }
-        .widget img{
-            margin-bottom: 40px;
-        }
         .capitalize{
             text-transform: capitalize;
+        }
+        .widget-title{
+            margin-bottom:20px;
         }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
-    <div class="container">
-        
+    <div class="container">      
         <h1>Weather Finder</h1>
-        <asp:Label ID="Label1" runat="server" Text="City"></asp:Label>
-        <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
-        <br />
-
-        <asp:Button ID="btnSubmit" runat="server" Text="Get Weather" OnClick="btnSubmit_Click" />
-        <br />
-        <asp:Label ID="lblOutput" runat="server" Text=""></asp:Label>
-        <br />
-        <br />
-
+        <div class="container">
+            <div class="form-group col-sm-4">
+                <asp:TextBox ID="txtCity" runat="server" placeholder="City" CssClass="form-control"></asp:TextBox>
+                <br />
+                <asp:Button ID="btnSubmit" runat="server" Text="Get Weather" OnClick="btnSubmit_Click" CssClass="btn btn-primary" />
+                <br />
+                <asp:Label ID="lblOutput" runat="server" Text=""></asp:Label>
+            </div>
+        </div>
         <asp:Panel ID="panWeatherWidget" runat="server" Visible="False">
-            <div class="container">
+            <hr />
+            <div class="container widget-title">
                 <asp:Label ID="lblTitle" runat="server" Font-Size="XX-Large"></asp:Label>
             </div>
             <div class="container widget col-sm-6" style="display:inline">
@@ -49,7 +51,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="container widget col-sm-6"" style="display:inline">
+            <div class="container widget col-sm-6" style="display:inline">
                 <asp:Image ID="Image2" runat="server" ImageUrl="~/images/cloud.png" Width="50px" />
                 <ul>
                     <li>
