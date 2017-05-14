@@ -37,31 +37,31 @@
             <div class="container widget-title">
                 <asp:Label ID="lblTitle" runat="server" Font-Size="XX-Large"></asp:Label>
             </div>
-            <div class="container widget col-sm-6" style="display:inline">
+            <div class="container widget col-sm-5" style="display:inline">
                 <asp:Image ID="Image1" runat="server" ImageUrl="~/images/thermometer.png" Width="50px" />
                 <ul>
                     <li>
-                        <asp:Label ID="lblMinTemp" runat="server" Text="Minimum Temperature:" Font-Size="Large"></asp:Label>
+                        <asp:Label ID="lblMinTemp" runat="server" Text="Minimum Temperature:" Font-Size="Medium"></asp:Label>
                     </li>
                     <li>
-                        <asp:Label ID="lblCurrentTemp" runat="server" Text="Current Temperature:" Font-Size="Large"></asp:Label>
+                        <asp:Label ID="lblCurrentTemp" runat="server" Text="Current Temperature:" Font-Size="Medium"></asp:Label>
                     </li>
                     <li>
-                        <asp:Label ID="lblMaxTemp" runat="server" Text="Maximum Temperature:" Font-Size="Large"></asp:Label>
+                        <asp:Label ID="lblMaxTemp" runat="server" Text="Maximum Temperature:" Font-Size="Medium"></asp:Label>
                     </li>
                 </ul>
             </div>
-            <div class="container widget col-sm-6" style="display:inline">
+            <div class="container widget col-sm-5" style="display:inline">
                 <asp:Image ID="Image2" runat="server" ImageUrl="~/images/cloud.png" Width="50px" />
                 <ul>
                     <li>
-                        <asp:Label ID="lblCloudAmount" runat="server" Text="Amount:" Font-Size="Large"></asp:Label>
+                        <asp:Label ID="lblCloudAmount" runat="server" Text="Amount:" Font-Size="Medium"></asp:Label>
                     </li>
                     <li>
-                        <asp:Label ID="lblCloudDescription" runat="server" Text="Description:" Font-Size="Large" CssClass="capitalize"></asp:Label>
+                        <asp:Label ID="lblCloudDescription" runat="server" Text="Description:" Font-Size="Medium" CssClass="capitalize"></asp:Label>
                     </li>
                     <li>
-                        <asp:Label ID="lblHumidity" runat="server" Text="Humidity:" Font-Size="Large" CssClass="capitalize"></asp:Label>
+                        <asp:Label ID="lblHumidity" runat="server" Text="Humidity:" Font-Size="Medium" CssClass="capitalize"></asp:Label>
                     </li>
                 </ul>
             </div>  

@@ -8,13 +8,13 @@ using System.Web;
 /// </summary>
 public class WeatherDisplay
 {
-    public static string TEMP_PREFIX_MIN = "Minimum Temperature:";
-    public static string TEMP_PREFIX_CURRENT = "Current Temperature:";
-    public static string TEMP_PREFIX_MAX = "Maximum Temperature:";
+    public static string TEMP_PREFIX_MIN = "Minimum:";
+    public static string TEMP_PREFIX_CURRENT = "Current:";
+    public static string TEMP_PREFIX_MAX = "Maximum:";
 
     public static string HUMIDITY_PREFIX = "Humidity:";
-    public static string CLOUD_AMOUNT_PREFIX = "Cloud Coverage:";
-    public static string CLOUD_DESCRIPTION_PREFIX = "Cloud Description:";
+    public static string CLOUD_AMOUNT_PREFIX = "Coverage:";
+    public static string CLOUD_DESCRIPTION_PREFIX = "Description:";
 
     public static string BuildCurrentTemperature(string temperature)
     {
