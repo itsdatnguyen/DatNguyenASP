@@ -51,7 +51,7 @@
             <hr />
             <div class="container col-md-offset-2 col-md-8">
                 <ul class="list-inline">
-                    <li class="list-group-item"><a href="fuck"><h3>Biography</h3></a></li>
+                    <li class="list-group-item"><a><h3>Biography</h3></a></li>
                     <li class="list-group-item"><a><h3>Life</h3></a></li>
                     <li class="list-group-item"><a><h3>Career</h3></a></li>
                     <li class="list-group-item"><a><h3>Github</h3></a></li>

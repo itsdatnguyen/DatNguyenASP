@@ -1,4 +1,8 @@
-﻿.list-inline{
+﻿.main-content {
+    padding-top: 50px;
+}
+
+.list-inline{
     padding: 10px;
 }
 
