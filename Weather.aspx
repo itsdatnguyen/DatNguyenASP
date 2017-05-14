@@ -70,7 +70,8 @@
     <br />
     <br />
     <div class="container">
-        <asp:Label ID="lblUrl" runat="server"></asp:Label>
+        <asp:Label ID="lblUrlPrefix" runat="server"></asp:Label>
+        <asp:HyperLink ID="lnkUrl" runat="server" Visible="False">[lnkUrl]</asp:HyperLink>
     </div>
     
 </asp:Content>

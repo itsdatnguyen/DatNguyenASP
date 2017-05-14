@@ -31,7 +31,11 @@ public partial class Default2 : System.Web.UI.Page
             lblOutput.Text = "Error, city is invalid";
         }
 
-        lblUrl.Text = "This is the url used to get the weather data: " + stringUrl;       
+        lblUrlPrefix.Text = "This is the url used to get the weather data: ";
+
+        lnkUrl.Visible = true;
+        lnkUrl.Text = "URL";
+        lnkUrl.NavigateUrl = stringUrl;
     }
 
     public bool SetTitle(XmlDocument xmldoc)
