@@ -8,6 +8,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
+    <div class="container-fluid">
         <h1>Here is an example of some of the code I write in Unreal Engine 4.</h1>
         <div class="col-sm-12">
             <p class="col-sm-8">
@@ -327,6 +328,6 @@ private:
                 </code>
             </pre>
         </div>
-
+    </div>
 </asp:Content>
 

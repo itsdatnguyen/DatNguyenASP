@@ -8,6 +8,7 @@
     <title>Dat Nguyen</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link href="Styles/normalize.css" rel="stylesheet" />
     <link href="Styles/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
     <link href="Styles/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="Styles/main.css" rel="stylesheet" type="text/css" />
