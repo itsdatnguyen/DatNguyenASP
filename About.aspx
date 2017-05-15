@@ -1,9 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="About.aspx.cs" Inherits="Default2" %>
+﻿<%@ Page Title="About Me" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="About.aspx.cs" Inherits="Default2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
     <div class="container">
+        <h1><%:Page.Title %></h1>
         <div class="container col-sm-8">
             <div>
                 <h3>Dat Nguyen</h3>

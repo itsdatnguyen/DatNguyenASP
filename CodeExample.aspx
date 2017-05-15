@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="CodeExample.aspx.cs" Inherits="Default2" %>
+﻿<%@ Page Title="Code Example" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="CodeExample.aspx.cs" Inherits="Default2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
     <link href="Styles/arduino-light.css" rel="stylesheet" type="text/css" />
@@ -9,7 +9,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
     <div class="container-fluid">
-        <h1>Here is an example of some of the code I write in Unreal Engine 4.</h1>
+        <h1><%:Page.Title %></h1>
+        <h2>Here is an example of some of the code I write in Unreal Engine 4.</h2>
         <div class="col-sm-12">
             <p class="col-sm-8">
                 C++ within Unreal Engine 4 can be very different from normal c++ due to Unreal Engine macros.
@@ -18,7 +19,7 @@
             </p>
         </div>
     <div class="col-lg-6">
-            <h2>GunComponent.cpp</h2>
+            <h3>GunComponent.cpp</h3>
             <pre>
 <code class="C++">#include "CatAndMouse.h"
 #include "GunComponent.h"
@@ -214,7 +215,7 @@ bool UGunComponent::CheckTimedReload()
         </div>
     
         <div class="col-lg-6">
-            <h2>GunComponent.h</h2>
+            <h3>GunComponent.h</h3>
             <pre>
 <code class="c++">#pragma once
 

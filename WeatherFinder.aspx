@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="WeatherFinder.aspx.cs" Inherits="Default2" %>
+﻿<%@ Page Title="Weather Finder" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="WeatherFinder.aspx.cs" Inherits="Default2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
     <style>
@@ -30,10 +30,10 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
-    <div class="container">     
+    <div class="container">
+        <h1><%:Page.Title %></h1>
         <div class="container">
             <div class="container col-sm-8">
-                <h1>Weather Finder</h1>
                 <div class="form-group col-sm-8">
                     <asp:TextBox ID="txtCity" runat="server" placeholder="City" CssClass="form-control"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="This field is required." ControlToValidate="txtCity"></asp:RequiredFieldValidator>
