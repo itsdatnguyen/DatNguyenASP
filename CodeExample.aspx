@@ -17,7 +17,7 @@
                 The macros USTRUCT(), GENERATED_BODY(), UCLASS, UFUNCTION etc are ways to notify Unreal Engine and to use it within Blueprint.
             </p>
         </div>
-    <div class="col-md-6">
+    <div class="col-lg-6">
             <h2>GunComponent.cpp</h2>
             <pre>
 <code class="C++">#include "CatAndMouse.h"
@@ -213,7 +213,7 @@ bool UGunComponent::CheckTimedReload()
             </pre>
         </div>
     
-        <div class="col-md-6">
+        <div class="col-lg-6">
             <h2>GunComponent.h</h2>
             <pre>
 <code class="c++">#pragma once

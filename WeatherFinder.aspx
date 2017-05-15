@@ -1,11 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="Weather.aspx.cs" Inherits="Default2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="WeatherFinder.aspx.cs" Inherits="Default2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
     <style>
         .widget-title img{
             padding-left: 20px;
         }
-
         .widget{
             padding: 0px 50px 30px 0px;
             width: auto;
@@ -20,27 +19,37 @@
         .widget ul li{
             width: auto;
         }
-        .capitalize{
-            text-transform: capitalize;
-        }
         .widget-title{
             margin-bottom:20px;
+        }
+
+        .row{
+            width: 100%;
         }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
-    <div class="container">      
-        <h1>Weather Finder</h1>
+    <div class="container">     
         <div class="container">
-            <div class="form-group col-sm-6">
-                <asp:TextBox ID="txtCity" runat="server" placeholder="City" CssClass="form-control"></asp:TextBox>
-                <br />
-                <asp:Button ID="btnSubmit" runat="server" Text="Get Weather" OnClick="btnSubmit_Click" CssClass="btn btn-primary" />
-                <br />
-                <asp:Label ID="lblOutput" runat="server" Text=""></asp:Label>
+            <div class="container col-sm-8">
+                <h1>Weather Finder</h1>
+                <div class="form-group col-sm-8">
+                    <asp:TextBox ID="txtCity" runat="server" placeholder="City" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="This field is required." ControlToValidate="txtCity"></asp:RequiredFieldValidator>
+                    <br />
+                    <asp:Label ID="lblOutput" runat="server" Text=""></asp:Label>
+                    <br />
+                    <asp:Button ID="btnSubmit" runat="server" Text="Get Weather" OnClick="btnSubmit_Click" CssClass="btn btn-primary" />
+                </div>  
             </div>
+            <aside class="pull-right col-sm-4 col-xs-12">
+                <div class="aside-element">
+                    <p>Powered by the OpenWeatherMap <a href="http://openweathermap.org/">API.</a></p>
+                </div>
+            </aside>
         </div>
+
         <asp:Panel ID="panWeatherWidget" runat="server" Visible="False" style="margin-bottom: 0px">
             <hr />
             <div class="container widget-title">
@@ -68,10 +77,10 @@
                         <asp:Label ID="lblCloudAmount" runat="server" Font-Size="Medium"></asp:Label>
                     </li>
                     <li>
-                        <asp:Label ID="lblCloudDescription" runat="server" Font-Size="Medium" CssClass="capitalize"></asp:Label>
+                        <asp:Label ID="lblCloudDescription" runat="server" Font-Size="Medium" CssClass="text-capitalize"></asp:Label>
                     </li>
                     <li>
-                        <asp:Label ID="lblHumidity" runat="server" Font-Size="Medium" CssClass="capitalize"></asp:Label>
+                        <asp:Label ID="lblHumidity" runat="server" Font-Size="Medium"></asp:Label>
                     </li>
                 </ul>
             </div> 
@@ -90,13 +99,10 @@
                 </ul>
             </div> 
         </asp:Panel>
-    </div>
-    <br />
-    <br />
-    <div class="container">
-        <asp:Label ID="lblUrlPrefix" runat="server"></asp:Label>
-        <asp:HyperLink ID="lnkUrl" runat="server" Visible="False">[lnkUrl]</asp:HyperLink>
-    </div>
-    
+        <div class="container">
+            <asp:Label ID="lblUrlPrefix" runat="server"></asp:Label>
+            <asp:HyperLink ID="lnkUrl" runat="server" Visible="False">[lnkUrl]</asp:HyperLink>          
+        </div>                      
+    </div>  
 </asp:Content>
 
