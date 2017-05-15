@@ -19,42 +19,54 @@ public partial class Default2 : System.Web.UI.Page
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         string stringUrl;
-        XmlDocument xdoc = WeatherHandler.GetWeatherFromCity(txtCity.Text, out stringUrl);
+        XmlDocument xmldoc = WeatherHandler.GetWeatherFromCity(txtCity.Text, out stringUrl);
 
-        if(xdoc.HasChildNodes && SetWeatherWidget(xdoc) && SetCloudWidget(xdoc) && SetTitle(xdoc))
+        if (xmldoc.HasChildNodes)
         {
-            lblOutput.Text = "";
-            panWeatherWidget.Visible = true;
-        }
+            XDocument xdocument = XDocument.Parse(xmldoc.OuterXml);
+
+            if (SetTitle(xdocument) && SetWeatherWidget(xdocument) && SetCloudWidget(xdocument) && SetAirWidget(xdocument))
+            {
+                lblOutput.Text = "";
+                panWeatherWidget.Visible = true;
+
+                lblUrlPrefix.Text = "This is the url used to get the weather data: ";
+                lnkUrl.Visible = true;
+                lnkUrl.Text = "URL";
+                lnkUrl.NavigateUrl = stringUrl;
+            }
+            else
+            {
+                lblOutput.Text = "Error, failed to parse XML data";
+            }
+        }  
         else
         {
             lblOutput.Text = "Error, city is invalid";
         }
-
-        lblUrlPrefix.Text = "This is the url used to get the weather data: ";
-
-        lnkUrl.Visible = true;
-        lnkUrl.Text = "URL";
-        lnkUrl.NavigateUrl = stringUrl;
     }
 
-    public bool SetTitle(XmlDocument xmldoc)
+    public bool SetTitle(XDocument xdocument)
     {
         try
         {
-            XDocument xdocument = XDocument.Parse(xmldoc.OuterXml);
+            var cityName = (from i in xdocument.Descendants("city")
+                         select new
+                         {
+                             CityName = (string)i.Attribute("name"),
+                         }).Single();
 
-            var items = from i in xdocument.Descendants("city")
-                        select new
-                        {
-                            CityName = (string)i.Attribute("name"),
+            var weatherIcon = (from i in xdocument.Descendants("weather")
+                               select new
+                               {
+                                   IconName = (string)i.Attribute("icon")
+                               }).Single();
 
-                        };
+            var cityCountry = xdocument.Descendants().Where(n => n.Name == "country").First();
 
-            foreach (var item in items)
-            {
-                lblTitle.Text = item.CityName;
-            }
+            lblTitle.Text = cityName.CityName + ", " + cityCountry.Value;
+            imgIcon.ImageUrl = WeatherDisplay.BuildWeatherIconUrl(weatherIcon.IconName);
+            
         }
         catch (Exception e)
         {
@@ -65,33 +77,62 @@ public partial class Default2 : System.Web.UI.Page
         return true;
     }
 
-    public bool SetCloudWidget(XmlDocument xmldoc)
+    public bool SetAirWidget(XDocument xdocument)
     {
         try
         {
-            XDocument xdocument = XDocument.Parse(xmldoc.OuterXml);
+            var windItems = (from i in xdocument.Descendants("speed")
+                                   select new
+                                   {
+                                       Description = (string)i.Attribute("name"),
+                                       Speed = (string)i.Attribute("value")
+                                   }).Single();
 
-            var cloudItems = from i in xdocument.Descendants("clouds")
+            var direction = (from i in xdocument.Descendants("direction")
+                             select new
+                             {
+                                 Direction = (string)i.Attribute("name")
+                             }).Single();
+
+            var pressureItems = (from i in xdocument.Descendants("pressure")
+                                 select new
+                                 {
+                                     Value = (string)i.Attribute("value"),
+                                     Unit = (string)i.Attribute("unit")
+                                 }).Single();
+
+            lblWindDescription.Text = windItems.Description;
+            lblWindAmount.Text = WeatherDisplay.BuildWind(windItems.Speed, direction.Direction);
+            lblPressure.Text = WeatherDisplay.BuildPressure(pressureItems.Value, pressureItems.Unit);
+        }
+        catch (Exception e)
+        {
+            Console.Out.WriteLine(e.Message);
+            return false;
+        }
+        return true;
+    }
+
+    public bool SetCloudWidget(XDocument xdocument)
+    {
+        try
+        {
+            var cloudItems = (from i in xdocument.Descendants("clouds")
                              select new
                              {
                                  Value = (int)i.Attribute("value"),
                                  Name = (string)i.Attribute("name")
-                             };
-            var humidity = from i in xdocument.Descendants("humidity")
+                             }).Single();
+
+            var humidity = (from i in xdocument.Descendants("humidity")
                            select new
                            {
                                Humidity = (string)i.Attribute("value")
-                           };
+                           }).Single();
 
-            foreach(var item in cloudItems)
-            {
-                lblCloudAmount.Text = WeatherDisplay.BuildCloudAmount(item.Value);
-                lblCloudDescription.Text = WeatherDisplay.BuildCloudDescription(item.Name);
-            }
-            foreach(var item in humidity)
-            {
-                lblHumidity.Text = WeatherDisplay.BuildHumidity(item.Humidity);
-            }
+            lblCloudAmount.Text = WeatherDisplay.BuildCloudAmount(cloudItems.Value);
+            lblCloudDescription.Text = WeatherDisplay.BuildCloudDescription(cloudItems.Name);
+            lblHumidity.Text = WeatherDisplay.BuildHumidity(humidity.Humidity);
         }
         catch(Exception e)
         {
@@ -101,26 +142,21 @@ public partial class Default2 : System.Web.UI.Page
         return true;
     }
 
-    public bool SetWeatherWidget(XmlDocument xmldoc)
+    public bool SetWeatherWidget(XDocument xdocument)
     {
         try
         {
-            XDocument xdocument = XDocument.Parse(xmldoc.OuterXml);
-
-            var items = from i in xdocument.Descendants("temperature")
+            var temperatureItems = (from i in xdocument.Descendants("temperature")
                         select new
                         {
                             CurrentTemp = (string)i.Attribute("value"),
                             MinTemp = (string)i.Attribute("min"),
                             MaxTemp = (string)i.Attribute("max")
-                        };
+                        }).Single();
 
-            foreach (var item in items)
-            {
-                lblCurrentTemp.Text = WeatherDisplay.BuildCurrentTemperature(item.CurrentTemp);
-                lblMinTemp.Text = WeatherDisplay.BuildMinTemperature(item.MinTemp);
-                lblMaxTemp.Text = WeatherDisplay.BuildMaxTemperature(item.MaxTemp);
-            }
+            lblCurrentTemp.Text = WeatherDisplay.BuildCurrentTemperature(temperatureItems.CurrentTemp);
+            lblMinTemp.Text = WeatherDisplay.BuildMinTemperature(temperatureItems.MinTemp);
+            lblMaxTemp.Text = WeatherDisplay.BuildMaxTemperature(temperatureItems.MaxTemp);
         }
         catch(Exception e)
         {

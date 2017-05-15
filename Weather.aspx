@@ -2,6 +2,15 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
     <style>
+        .widget-title img{
+            padding-left: 20px;
+        }
+
+        .widget{
+            padding: 0px 50px 30px 0px;
+            width: auto;
+            display: inline-block;
+        }
         .widget ul{
             display: inline-block;
         }
@@ -9,7 +18,7 @@
             float: left;
         }
         .widget ul li{
-            width: 100%;
+            width: auto;
         }
         .capitalize{
             text-transform: capitalize;
@@ -24,7 +33,7 @@
     <div class="container">      
         <h1>Weather Finder</h1>
         <div class="container">
-            <div class="form-group col-sm-4">
+            <div class="form-group col-sm-6">
                 <asp:TextBox ID="txtCity" runat="server" placeholder="City" CssClass="form-control"></asp:TextBox>
                 <br />
                 <asp:Button ID="btnSubmit" runat="server" Text="Get Weather" OnClick="btnSubmit_Click" CssClass="btn btn-primary" />
@@ -32,39 +41,54 @@
                 <asp:Label ID="lblOutput" runat="server" Text=""></asp:Label>
             </div>
         </div>
-        <asp:Panel ID="panWeatherWidget" runat="server" Visible="False">
+        <asp:Panel ID="panWeatherWidget" runat="server" Visible="False" style="margin-bottom: 0px">
             <hr />
             <div class="container widget-title">
                 <asp:Label ID="lblTitle" runat="server" Font-Size="XX-Large"></asp:Label>
+                <asp:Image ID="imgIcon" runat="server" />
             </div>
-            <div class="container widget col-sm-5" style="display:inline">
-                <asp:Image ID="Image1" runat="server" ImageUrl="~/images/thermometer.png" Width="50px" />
+            <div class="container widget">
+                <asp:Image runat="server" ImageUrl="~/images/thermometer.png" Width="50px"></asp:Image>
                 <ul>
                     <li>
-                        <asp:Label ID="lblMinTemp" runat="server" Text="Minimum Temperature:" Font-Size="Medium"></asp:Label>
+                        <asp:Label ID="lblMinTemp" runat="server" Font-Size="Medium"></asp:Label>
                     </li>
                     <li>
-                        <asp:Label ID="lblCurrentTemp" runat="server" Text="Current Temperature:" Font-Size="Medium"></asp:Label>
+                        <asp:Label ID="lblCurrentTemp" runat="server" Font-Size="Medium"></asp:Label>
                     </li>
                     <li>
-                        <asp:Label ID="lblMaxTemp" runat="server" Text="Maximum Temperature:" Font-Size="Medium"></asp:Label>
+                        <asp:Label ID="lblMaxTemp" runat="server" Font-Size="Medium"></asp:Label>
                     </li>
                 </ul>
             </div>
-            <div class="container widget col-sm-5" style="display:inline">
-                <asp:Image ID="Image2" runat="server" ImageUrl="~/images/cloud.png" Width="50px" />
+            <div class="container widget">
+                <asp:Image runat="server" ImageUrl="~/images/cloud.png" Width="50px"></asp:Image>
                 <ul>
                     <li>
-                        <asp:Label ID="lblCloudAmount" runat="server" Text="Amount:" Font-Size="Medium"></asp:Label>
+                        <asp:Label ID="lblCloudAmount" runat="server" Font-Size="Medium"></asp:Label>
                     </li>
                     <li>
-                        <asp:Label ID="lblCloudDescription" runat="server" Text="Description:" Font-Size="Medium" CssClass="capitalize"></asp:Label>
+                        <asp:Label ID="lblCloudDescription" runat="server" Font-Size="Medium" CssClass="capitalize"></asp:Label>
                     </li>
                     <li>
-                        <asp:Label ID="lblHumidity" runat="server" Text="Humidity:" Font-Size="Medium" CssClass="capitalize"></asp:Label>
+                        <asp:Label ID="lblHumidity" runat="server" Font-Size="Medium" CssClass="capitalize"></asp:Label>
                     </li>
                 </ul>
-            </div>  
+            </div> 
+            <div class="container widget">
+                <asp:Image ID="Image3" runat="server" ImageUrl="~/images/wind.png" Width="50px" />
+                <ul>
+                    <li>
+                        <asp:Label ID="lblWindDescription" runat="server" Font-Size="Medium"></asp:Label>
+                    </li>
+                    <li>
+                        <asp:Label ID="lblWindAmount" runat="server" Font-Size="Medium"></asp:Label>
+                    </li>
+                    <li>
+                        <asp:Label ID="lblPressure" runat="server"  Font-Size="Medium"></asp:Label>
+                    </li>
+                </ul>
+            </div> 
         </asp:Panel>
     </div>
     <br />

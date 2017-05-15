@@ -15,6 +15,22 @@ public class WeatherDisplay
     public static string HUMIDITY_PREFIX = "Humidity:";
     public static string CLOUD_AMOUNT_PREFIX = "Coverage:";
     public static string CLOUD_DESCRIPTION_PREFIX = "Description:";
+    
+
+    public static string BuildWeatherIconUrl(string iconName)
+    {
+        return "http://openweathermap.org/img/w/" + iconName + ".png";
+    }
+
+    public static string BuildWind(string speed, string direction)
+    {
+        return speed + "km/h, " + direction;
+    }
+
+    public static string BuildPressure(string value, string unit)
+    {
+        return value + " " + unit;
+    }
 
     public static string BuildCurrentTemperature(string temperature)
     {
@@ -38,11 +54,11 @@ public class WeatherDisplay
 
     public static string BuildCloudDescription(string description)
     {
-        return CLOUD_DESCRIPTION_PREFIX + " " + description;
+        return description;
     }
 
     public static string BuildHumidity(string humidity)
     {
-        return HUMIDITY_PREFIX + " " + humidity;
+        return HUMIDITY_PREFIX + " " + humidity + "%";
     }
 }
