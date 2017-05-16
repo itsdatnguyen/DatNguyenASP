@@ -14,22 +14,26 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
     <div class="container-fluid">
-        <div class="container">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h1><%:Page.Title %></h1>
+        <div class="col-xs-12">
+            <div class="col-sm-7">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1><%:Page.Title %></h1>
+                    </div>
+                    <div class="panel-body">
+                        <h2>Here is an example of some of the code I write in Unreal Engine 4.</h2>
+                    </div>               
                 </div>
-                <div class="panel-body">
-                    <h2>Here is an example of some of the code I write in Unreal Engine 4.</h2>
-                </div>
-                <div class="panel-footer">
+            </div>
+            <aside class="col-sm-5 col-xs-12">
+                <div class="aside-element">
                     <p>
                         C++ within Unreal Engine 4 can be very different from normal c++ due to Unreal Engine macros.
                         The macros are needed in order to wrap up the code in a way that Unreal Engine can use.
                         The macros USTRUCT(), GENERATED_BODY(), UCLASS, UFUNCTION etc are ways to notify Unreal Engine and to use it within Blueprint.
                     </p>
                 </div>
-            </div>
+            </aside>
         </div>
     <div class="col-lg-6">
             <h3>GunComponent.cpp</h3>

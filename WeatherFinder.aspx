@@ -29,7 +29,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
     <div class="container">
         <div class="container">
-            <aside class="pull-right col-sm-4 col-xs-12 info">
+            <aside class="pull-right col-sm-4 col-xs-12">
                 <div class="aside-element">
                     <p>Powered by the OpenWeatherMap <a href="http://openweathermap.org/">API.</a></p>
                 </div>
