@@ -37,8 +37,6 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="./">Home</a></li>
-                        <li><a href="About.aspx">About</a></li>
-                        <li><a href="Contact.aspx">Contact</a></li>
                         <li><a href="CodeExample.aspx">Code Example</a></li>                      
                         <li><a href="WeatherFinder.aspx">Weather Finder</a></li>                      
                     </ul>
@@ -50,25 +48,13 @@
             <asp:ContentPlaceHolder id="MainContent" runat="server"></asp:ContentPlaceHolder>
         </div>
 
-        <footer class="container-fluid">
-            <hr />
-            <div class="container col-md-offset-2 col-md-8">
-                <ul class="list-inline">
-                    <li class="list-group-item"><a><h3>Biography</h3></a></li>
-                    <li class="list-group-item"><a><h3>Life</h3></a></li>
-                    <li class="list-group-item"><a><h3>Career</h3></a></li>
-                    <li class="list-group-item"><a><h3>Github</h3></a></li>
-                    <li class="list-group-item"><a><h3>LinkedIn</h3></a></li>
-                    <li class="list-group-item"><a><h3>Programming</h3></a></li>
-                    <li class="list-group-item"><a><h3>Music</h3></a></li>
-                    <li class="list-group-item"><a><h3>Business</h3></a></li>
-                    <li class="list-group-item"><a><h3>Aspirations</h3></a></li>
-                    <li class="list-group-item"><a><h3>Motivation</h3></a></li>
-                    <li class="list-group-item"><a><h3>Gaming</h3></a></li>
-                    <li class="list-group-item"><a><h3>Web Development</h3></a></li>
+        <footer>
+            <div class="container">
+                <ul class="list-unstyled">
+                    <li><a href="mailto:dat.nguyen.quang7@gmail.com">dat.nguyen.quang7@gmail.com</a></li>
+                    <li><a href="https://itsdatnguyen.github.io/home/">Github</a></li>
+                    <li><a href="https://www.linkedin.com/in/datquangnguyen/">LinkedIn</a></li>
                 </ul>
-            </div>
-            <div class="container pull-left">
                 <p>&copy; <%: DateTime.Now.Year %> - Dat Nguyen</p>
             </div>
         </footer>

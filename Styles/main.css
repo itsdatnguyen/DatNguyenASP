@@ -1,20 +1,22 @@
+.box-shadow {
+  box-shadow: 5px 5px 20px grey;
+}
 .main-content {
   padding-top: 50px;
 }
-.list-inline {
-  padding: 10px;
-}
-.list-group-item {
-  padding: 10px;
-  margin: 5px;
-  text-align: center;
-}
-.list-group-item h3 {
-  padding: 0px;
-  margin: 0px;
-}
 .aside-element {
-  border: 3px #3F729B solid;
-  padding: 10px;
-  margin: 10px 0px 10px 0px;
+  border: 3px #77ceee solid;
+  padding: 15px;
+  margin: 30px 0px 20px 0px;
+  background-color: #d1eef9;
+  box-shadow: 5px 5px 20px grey;
+  display: block;
+}
+.aside-element img {
+  width: 100%;
+}
+footer {
+  border-top: 3px #77ceee solid;
+  padding-top: 20px;
+  margin-top: 20px;
 }
