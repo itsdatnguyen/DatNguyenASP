@@ -8,7 +8,6 @@
     <title>Dat Nguyen</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="Styles/normalize.css" rel="stylesheet" />
     <link href="Styles/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
     <link href="Styles/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="Styles/main.css" rel="stylesheet" type="text/css" />
@@ -38,7 +37,9 @@
                     <ul class="nav navbar-nav">
                         <li><a href="./">Home</a></li>
                         <li><a href="CodeExample.aspx">Code Example</a></li>                      
-                        <li><a href="WeatherFinder.aspx">Weather Finder</a></li>                      
+                        <li><a href="WeatherFinder.aspx">Weather Finder</a></li>  
+                        <li><a href="CurrencyConverter.aspx">Currency Converter</a></li>
+                        <li><a href="MotivationalQuote.aspx">Motivational Quote</a></li>
                     </ul>
                 </div>
             </div>
@@ -48,7 +49,7 @@
             <asp:ContentPlaceHolder id="MainContent" runat="server"></asp:ContentPlaceHolder>
         </div>
 
-        <footer>
+        <footer class="footer-links">
             <div class="container">
                 <ul class="list-unstyled">
                     <li><a href="mailto:dat.nguyen.quang7@gmail.com">dat.nguyen.quang7@gmail.com</a></li>

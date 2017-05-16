@@ -1,4 +1,10 @@
-﻿@theme-primary-light: lighten(#33b5e5, 35);
+﻿@import "less/library.less";
+
+body{
+    display: none;
+}
+
+@theme-primary-light: lighten(#33b5e5, 35);
 @theme-primary-dark: lighten(#33b5e5, 15);
 
 @theme-border: 3px @theme-primary-dark solid;
@@ -26,7 +32,7 @@
     }
 }
 
-footer{
+.footer-links{
     border-top: @theme-border;
     padding-top: 20px;
     margin-top: 20px;

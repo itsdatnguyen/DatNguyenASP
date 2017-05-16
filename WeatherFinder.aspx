@@ -2,13 +2,20 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
     <style>
+        @media screen and (min-width: 768){
+            .widget ul{
+                margin-right: 20px;
+            }
+        }
         .widget{
-            padding: 0px 50px 30px 0px;
-            width: auto;
+            padding: 0px 0px 30px 0px;
+            width: 220px;
             display: inline-block;
         }
         .widget ul{
             display: inline-block;
+            list-style-type: none;
+            padding-left: 10px;
         }
         .widget img{
             float: left;

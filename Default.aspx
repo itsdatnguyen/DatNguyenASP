@@ -24,8 +24,8 @@
         </div>
     
         <div>
-            <h1><%:Page.Title %></h1>
             <div class="col-sm-7">
+                <h1><%:Page.Title %></h1>
                 <h3>Python</h3>
                 <p>
                     The first game that I created was a tank game in Python. You know those old popular flash games where you could move a small tank, change its fire projectory and try to hit the other tank? I made that in grade 9. I remember how intensely motivated I was and how much fun that project was. Through a lot of trial and error, I applied concepts such as trigonometry and physics at an age that was years before I was supposed to learn it. 
@@ -42,12 +42,12 @@
             <aside class="pull-right col-sm-5">
                 <div class="aside-element">
                     <h3>Stealth Game</h3>
-                    <p>Made in Game Maker, Red's Adventure is a platforming, action based game that rewards good reaction time.</p>
+                    <p>Made in Unreal Engine 4, Stealth game is a cat/mouse game where you can use tools and abilities to sneak past and dodge enemies. <a href="https://github.com/itsdatnguyen/stealth-game">Github</a></p>
                     <asp:Image ID="Image1" runat="server" ImageUrl="~/images/stealth-game/models-mini.png" />
                 </div>
                 <div class="aside-element">
                     <h3>Red's Adventure</h3>
-                    <p>Made in Game Maker, Red's Adventure is a platforming, action based game that rewards good reaction time.</p>
+                    <p>Made in Game Maker, Red's Adventure is a platforming, action based game that rewards good reaction time. <a href="https://github.com/itsdatnguyen/reds-adventure">Github</a></p>
                     <asp:Image ID="Image2" runat="server" ImageUrl="~/images/reds-adventure/red-attacking-mini.png" />
                 </div>
             </aside>

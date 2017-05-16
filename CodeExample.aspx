@@ -2,6 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
     <link href="Styles/arduino-light.css" rel="stylesheet" type="text/css" />
+    <style>
+        pre{
+            font-size: 0.8em;
+        }
+    </style>
 
     <script src="Scripts/highlight.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
@@ -10,9 +15,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
     <div class="container-fluid">
         <div class="container">
-            <div class="panel panel-info">
-                <h1 class="panel-heading"><%:Page.Title %></h1>
-                <h2 class="panel-body">Here is an example of some of the code I write in Unreal Engine 4.</h2>
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h1><%:Page.Title %></h1>
+                </div>
+                <div class="panel-body">
+                    <h2>Here is an example of some of the code I write in Unreal Engine 4.</h2>
+                </div>
                 <div class="panel-footer">
                     <p>
                         C++ within Unreal Engine 4 can be very different from normal c++ due to Unreal Engine macros.

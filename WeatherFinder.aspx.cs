@@ -91,7 +91,7 @@ public partial class Default2 : System.Web.UI.Page
             var direction = (from i in xdocument.Descendants("direction")
                              select new
                              {
-                                 Direction = (string)i.Attribute("name")
+                                 Direction = (string)i.Attribute("code")
                              }).Single();
 
             var pressureItems = (from i in xdocument.Descendants("pressure")
