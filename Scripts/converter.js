@@ -46,7 +46,7 @@
         changedElementConversion = this.buildConversionObject(this.getSelectFromInput($changedInput), $changedInput);
         elementToChangeConversion = this.buildConversionObject(this.getSelectFromInput($inputToChange), $inputToChange);
 
-        var otherElementValue = this.calculateConversion(changedElementConversion, elementToChangeConversion);
+        var otherElementValue = this.calculateConversion(changedElementConversion, elementToChangeConversion).toFixed(2);
         $inputToChange.val(otherElementValue);
     },
 
