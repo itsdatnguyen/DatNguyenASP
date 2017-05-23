@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="Dat Nguyen" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
+<%@ Register Src="~/Content/ForecastChart.ascx" TagPrefix="uc1" TagName="ForecastChart" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
     <style>
         .jumbotron{
@@ -37,7 +40,16 @@
                 <h3>Unreal Engine 4 and Unity</h3>     
                 <p>
                     After Red's Adventure, I tried out Unity and Unreal Engine 4, trying to figure out which engine was better. Unreal Engine caught my eye, as Blueprint (Unreal Engine's visual scripting system) was incredibly useful for me. Even today, I use a mixture of C++ and Blueprint since Blueprint is so intuitive and productive. I then created "Stealth Game" in Unreal Engine 4, which whats my first attempt at a 3D game with working AI. Through this project, I've learned valuable game development knowledge of shaders (materials), animation, AI, and map design. The most challenging aspect of Stealth Game was creating realistic AI. I spent an absurd amount of time on AI, but I always feel as more work could be done. Thankfully, Unreal provides a great framework for AI design through its built-in <a href="http://www.gamasutra.com/blogs/ChrisSimpson/20140717/221339/Behavior_trees_for_AI_How_they_work.php">Behavior Trees</a>. <a href="https://github.com/itsdatnguyen/stealth-game">Stealth Game</a> is available on Github.
-                </p>            
+                </p>           
+                <asp:Chart ID="Chart1" runat="server">
+                    <Series>
+                        <asp:Series Name="Series1"></asp:Series>
+                    </Series>
+                    <ChartAreas>
+                        <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+                    </ChartAreas>
+                </asp:Chart>
+                <uc1:ForecastChart runat="server" ID="ForecastChart" />
             </div>
             <aside class="pull-right col-sm-5">
                 <div class="aside-element">

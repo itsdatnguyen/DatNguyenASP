@@ -8,38 +8,67 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using System.Xml.Linq;
+using Weather.Data;
+using Weather.UI;
 
 public partial class Default2 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        if(Session[WeatherForecast.CITY_NAME_KEY] != null)
+        {
+            /*txtCity.Text = (string)Session[WeatherForecast.CITY_NAME_KEY];
+            GetWeather(txtCity.Text);*/
+        }
     }
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        string stringUrl;
-        XmlDocument xmldoc = WeatherHandler.GetWeatherFromCity(txtCity.Text, out stringUrl);
+        //Session[WeatherForecast.CITY_NAME_KEY] = txtCity.Text;
+        GetWeather(txtCity.Text);
+        panWidgets.Visible = true;       
+    }
 
-        if (xmldoc.HasChildNodes)
+    public void GetWeather(string cityName)
+    {
+        PopulateCurrentWeather(cityName);
+        //PopulateForecast(cityName);
+    }
+
+    public void PopulateForecast(string cityName)
+    {
+        try
         {
-            XDocument xdocument = XDocument.Parse(xmldoc.OuterXml);
+            List<WeatherPoint> forecast = WeatherForecast.QueryWeatherForecast(cityName);
 
+            List<float> temperatures = new List<float>();
+            foreach (WeatherPoint point in forecast)
+            {
+                temperatures.Add(point.Temperature);
+            }
+        }
+        catch(Exception e)
+        {
+            Console.Out.WriteLine(e.Message);
+            lblOutput.Text = "Error, city is invalid";
+        }
+    }
+
+    public void PopulateCurrentWeather(string cityName)
+    {
+        XDocument xdocument = WeatherForecast.QueryCurrentWeather(cityName);
+        
+        if (xdocument.Elements().Count() > 0)
+        {
             if (SetTitle(xdocument) && SetWeatherWidget(xdocument) && SetCloudWidget(xdocument) && SetAirWidget(xdocument))
             {
                 lblOutput.Text = "";
-                panWeatherWidget.Visible = true;
-
-                lblUrlPrefix.Text = "This is the url used to get the weather data: ";
-                lnkUrl.Visible = true;
-                lnkUrl.Text = "URL";
-                lnkUrl.NavigateUrl = stringUrl;
             }
             else
             {
                 lblOutput.Text = "Error, failed to parse XML data";
             }
-        }  
+        }
         else
         {
             lblOutput.Text = "Error, city is invalid";

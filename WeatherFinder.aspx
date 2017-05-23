@@ -1,7 +1,14 @@
-﻿<%@ Page Title="Weather Finder" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="WeatherFinder.aspx.cs" Inherits="Default2" %>
+﻿<%@ Page Title="Current Weather" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="WeatherFinder.aspx.cs" Inherits="Default2" %>
+
+<%@ Register Src="~/Content/ForecastChart.ascx" TagPrefix="uc1" TagName="ForecastChart" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
     <style>
+        .nav-tabs{
+            padding-top: 40px;
+        }
+
         @media screen and (min-width: 768){
             .widget ul{
                 margin-right: 20px;
@@ -28,6 +35,10 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
     <div class="container">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="WeatherFinder.aspx">Current Weather</a></li>
+            <li role="presentation"><a href="WeatherFinderChart.aspx">Weather Forecast</a></li>
+        </ul>
         <div class="container">
             <aside class="pull-right col-sm-4 col-xs-12">
                 <div class="aside-element">
@@ -36,18 +47,17 @@
             </aside>
             <div class="container col-sm-8">
                 <h1><%:Page.Title %></h1>            
-                <div class="form-group col-sm-8">
-                    <asp:TextBox ID="txtCity" runat="server" placeholder="City" CssClass="form-control"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="This field is required." ControlToValidate="txtCity"></asp:RequiredFieldValidator>
+                <div class="form-group">
+                    <asp:TextBox ID="txtCity" runat="server" placeholder="City" CssClass="form-control city-name"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="This field is required." ControlToValidate="txtCity"></asp:RequiredFieldValidator>                    
                     <br />
                     <asp:Label ID="lblOutput" runat="server" Text=""></asp:Label>
                     <br />
-                    <asp:Button ID="btnSubmit" runat="server" Text="Get Weather" OnClick="btnSubmit_Click" CssClass="btn btn-primary" />
+                    <asp:Button ID="btnSubmit" runat="server" Text="Get Current Weather" OnClick="btnSubmit_Click" CssClass="btn btn-primary weather-submit" />
                 </div>  
             </div>          
         </div>
-
-        <asp:Panel ID="panWeatherWidget" runat="server" Visible="False" CssClass="panel panel-default">
+        <asp:Panel runat="server" Visible="False" ID="panWidgets">
             <div class="panel-heading">
                 <asp:Label ID="lblTitle" runat="server" Font-Size="XX-Large"></asp:Label>
                 <asp:Image ID="imgIcon" runat="server" />
@@ -96,13 +106,7 @@
                     </ul>
                 </div> 
             </div>
-            <div class="panel-footer">
-                <div class="container">
-                    <asp:Label ID="lblUrlPrefix" runat="server"></asp:Label>
-                    <asp:HyperLink ID="lnkUrl" runat="server" Visible="False">[lnkUrl]</asp:HyperLink>          
-                </div> 
-            </div>
-        </asp:Panel>                             
+        </asp:Panel>  
     </div>  
 </asp:Content>
 

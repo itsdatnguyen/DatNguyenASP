@@ -4,13 +4,8 @@
     <script src="Scripts/converter.js"></script>
 
 <script>
-    function getWorldCurrencyRates (data) {
-        converter.quotes = data.quotes;
-    }
-
     $(document).ready(function () {
-        converter.initializeConverter("getWorldCurrencyRates", [$("#currency-type-1"), $("#currency-type-2")]);
-
+        converter.initializeConverter([$("#currency-type-1"), $("#currency-type-2")]);
         converter.registerConversion($("#currency-amount-1"), $("#currency-amount-2"));
         converter.registerConversion($("#currency-amount-2"), $("#currency-amount-1"));   
     });

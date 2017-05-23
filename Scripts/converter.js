@@ -1,4 +1,8 @@
-﻿var converter = {
+﻿function getWorldCurrencyRates(data) {
+    converter.quotes = data.quotes;
+}
+
+var converter = {
     key: "64ee3e0e3059f67b253bb4632781bb03",
     quotes: {},
 
@@ -50,13 +54,13 @@
         $inputToChange.val(otherElementValue);
     },
 
-    initializeConverter: function (callbackName, dropdowns) {
+    initializeConverter: function (dropdowns) {
         this.getWorldCurrencies(function (data) {
             this.populateCurrencyDropdowns(data.currencies, dropdowns);
         }.bind(this));
 
         var script = document.createElement('script');
-        script.src = "http://apilayer.net/api/live?access_key=" + this.key + "&callback=" + callbackName + "&format=1";
+        script.src = "http://apilayer.net/api/live?access_key=" + this.key + "&callback=getWorldCurrencyRates&format=1";
         document.body.appendChild(script);
     },
 
