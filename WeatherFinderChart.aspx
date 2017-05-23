@@ -9,118 +9,33 @@
 
     <script src="Scripts/highcharts.js"></script>
     <script src="Scripts/highcharts-more.js"></script>
-    <script>
-        var forecast = {
-            forecastData: [],
-            chart: null,
-            elementId: "",
-
-            queryForecast: function (cityName, callback) {
-                $.getJSON("http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&mode=json&units=metric&appid=6402e473e5743ba258ec0facd59dea01",
-                    function (data) {
-                        this.forecastData = data.list;
-                        callback(data.list);
-                }.bind(this));
-            },
-
-            getTemperaturePoints: function () {
-                var points = [];
-
-                var currentTime = null;
-                this.forecastData.forEach(function (element) {
-                    points.push(element.main.temp);
-                   // points.push([element.dt, element.main.temp]);
-                    //element.dt_txt.substring(0, 10)
-                });
-                console.log(JSON.stringify(points));
-                return points;
-            },
-
-            updateChart: function (data, title, cityName, highlightLabel) {
-                this.chart.series[0].setData(data, true);
-                this.chart.setTitle({ text: title }, { text: cityName.charAt(0).toUpperCase() + cityName.slice(1) });
-                this.chart.yAxis[0].setTitle({ text: highlightLabel });
-                this.chart.series[0].name = highlightLabel;
-            },
-
-            buildChart: function (filter, cityName) {
-                switch (filter) {
-                    case "temperature":
-                        this.updateChart(this.getTemperaturePoints(), "5 Day Temperature Forecast", cityName, "Temperature (°C)");
-                        break;
-
-                    
-                }
-            },
-
-            initializeForecast: function (elementId) {
-                this.elementId = elementId;
-                this.chart = Highcharts.chart(elementId, {
-                    chart: {
-                        zoomType: 'x'
-                    },
-                    subtitle: {
-                        text: document.ontouchstart === undefined ?
-                            'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-                    },
-                    xAxis: {
-                        type: 'datetime'                       
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    plotOptions: {
-                        area: {
-                            fillColor: {
-                                linearGradient: {
-                                    x1: 0,
-                                    y1: 0,
-                                    x2: 0,
-                                    y2: 1
-                                },
-                                stops: [
-                                    [0, Highcharts.getOptions().colors[0]],
-                                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                                ]
-                            },
-                            marker: {
-                                radius: 2
-                            },
-                            lineWidth: 1,
-                            states: {
-                                hover: {
-                                    lineWidth: 1
-                                }
-                            },
-                            threshold: null
-                        }
-                    },
-
-                    series: [{
-                        pointStart: Date.now(),
-                        pointInterval: 1000 * 3600 * 3,
-                        type: 'area'
-                    }]
-                });
-            }
+    <script src="Scripts/forecast.js"></script>
+    <script>       
+        function clearChartFilters() {
+            $(".filter").removeClass("active");
         }
 
         $(document).ready(function () {
             forecast.initializeForecast("forecast-chart");
-            $(".chart").hide();
+            $(".chart-container").hide();
 
             $("#submit-city").click(function (ev) {
                 var cityName = $(".city-name").val();
                 forecast.queryForecast(cityName, function (data) {
                     forecast.buildChart("temperature", cityName);
-                    console.log(data);
                 });
 
-                $(".chart").show();
+                $(".chart-container").show();
                 ev.preventDefault();
             });
-        });
 
+            $(".filter").click(function (element) {
+                var target = element.currentTarget;
+                clearChartFilters();
+                target.className += " active";
+                forecast.buildChart(target.id, $(".city-name").val());
+            });
+        });
     </script>
 </asp:Content>
 
@@ -147,13 +62,19 @@
                     <input type="submit" class="btn btn-primary" value="Get Forecast" id="submit-city"/>
                 </div>  
             </div>          
-        </div>
+        </div>      
         <div class="chart-container">
-            <div class="chart" id="forecast-chart">
-
+            <hr />
+            <div class="container">
+                <ul class="nav nav-pills">
+                    <li class="active filter" id="temperature" role="presentation"><a><span>Temperature</span></a></li>
+                    <li class="filter" id="humidity" role="presentation"><a><span>Humidity</span></a></li>
+                    <li class="filter" id="pressure" role="presentation"><a><span>Pressure</span></a></li>
+                    <li class="filter" id="windSpeed" role="presentation"><a><span>Wind Speed</span></a></li>
+                </ul>
             </div>
+            <div class="chart" id="forecast-chart"></div>
         </div>
     </div>
-
 </asp:Content>
 
