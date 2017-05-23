@@ -32,7 +32,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="CodeExample.aspx">Code Example</a></li>                      
-                        <li><a href="WeatherFinder.aspx">Weather Forecast</a></li>  
+                        <li><a href="CurrentWeather.aspx">Weather Forecast</a></li>  
                         <li><a href="CurrencyConverter.aspx">Currency Converter</a></li>
                         <li><a href="MotivationalQuote.aspx">Motivational Quote</a></li>
                     </ul>

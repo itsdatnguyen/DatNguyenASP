@@ -1,7 +1,4 @@
-﻿<%@ Page Title="Current Weather" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="WeatherFinder.aspx.cs" Inherits="Default2" %>
-
-<%@ Register Src="~/Content/ForecastChart.ascx" TagPrefix="uc1" TagName="ForecastChart" %>
-
+﻿<%@ Page Title="Current Weather" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="CurrentWeather.aspx.cs" Inherits="Default2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
     <style>
@@ -36,8 +33,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
     <div class="container">
         <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="WeatherFinder.aspx">Current Weather</a></li>
-            <li role="presentation"><a href="WeatherFinderChart.aspx">Weather Forecast</a></li>
+            <li role="presentation" class="active"><a href="CurrentWeather.aspx">Current Weather</a></li>
+            <li role="presentation"><a href="WeatherForecast.aspx">Weather Forecast</a></li>
         </ul>
         <div class="container">
             <aside class="pull-right col-sm-4 col-xs-12">

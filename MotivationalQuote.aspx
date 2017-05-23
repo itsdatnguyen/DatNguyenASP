@@ -30,7 +30,7 @@
                 event.preventDefault();
             });
 
-            setupQuotes("Content/motivationalquotes.json", function (data) {
+            setupQuotes("Content/motivationalquotes.txt", function (data) {
                 quotesObject = data;
                 displayRandomQuote();
             });           

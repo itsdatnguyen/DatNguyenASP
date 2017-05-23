@@ -4,7 +4,6 @@
     isMetric: true,
     filter: "",
 
-    
     setMetric: function (isMetric) {
         this.isMetric = isMetric;
         this.buildChart(this.filter, this.forecastData.city.name);
@@ -26,7 +25,7 @@
                 point = element.main.temp;
             }
             else {
-                point = element.main.temp * 1.8 + 32;
+                point = parseFloat((element.main.temp * 1.8 + 32).toFixed(2));
             }
             points.push(point);
         }.bind(this));
@@ -100,7 +99,9 @@
 
     updateChart: function (data, title, cityName, highlightLabel) {
         this.chart.series[0].setData(data);
-        this.chart.setTitle({ text: title }, { text: cityName.charAt(0).toUpperCase() + cityName.slice(1) + ", " + this.forecastData.city.country});
+        this.chart.setTitle(
+            { text: cityName.charAt(0).toUpperCase() + cityName.slice(1) + " " + this.forecastData.city.country + ", " + title  },
+            { text: document.ontouchstart === undefined ? 'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in' });
         this.chart.yAxis[0].setTitle({ text: highlightLabel });
         this.chart.series[0].name = highlightLabel;
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Weather Forecast" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="WeatherFinderChart.aspx.cs" Inherits="Default2" %>
+﻿<%@ Page Title="Weather Forecast" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="WeatherForecast.aspx.cs" Inherits="Default2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
     <style>
@@ -23,16 +23,15 @@
 
         $(document).ready(function () {
             forecast.initializeForecast("forecast-chart");
-            $(".chart-container").hide();
 
             $("#submit-city").click(function (ev) {
                 var cityName = $(".city-name").val();
                 forecast.queryForecast(cityName, function (data) {
                     var filter = $(".dropdown-filter").find($(".active")).attr("id");
                     forecast.buildChart(filter, cityName);
+                    $(".chart-container").removeClass("hidden");
                 });
 
-                $(".chart-container").show();
                 ev.preventDefault();
             });
 
@@ -64,8 +63,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
     <div class="container">
         <ul class="nav nav-tabs">
-            <li role="presentation"><a href="WeatherFinder.aspx">Current Weather</a></li>
-            <li role="presentation" class="active"><a href="WeatherFinderChart.aspx">Weather Forecast</a></li>
+            <li role="presentation"><a href="CurrentWeather.aspx">Current Weather</a></li>
+            <li role="presentation" class="active"><a href="WeatherForecast.aspx">Weather Forecast</a></li>
         </ul>
         <div class="container">
             <aside class="pull-right col-sm-4 col-xs-12">
@@ -85,7 +84,7 @@
                 </div>  
             </div>          
         </div>      
-        <div class="chart-container">
+        <div class="chart-container hidden">
             <hr />      
             <div class="container">    
                 <div class="dropdown chart-modifier">
