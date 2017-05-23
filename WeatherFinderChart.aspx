@@ -5,14 +5,20 @@
         .nav-tabs{
             padding-top: 40px;
         }
+        .chart-modifier{
+            display: inline;
+        }
     </style>
-
     <script src="Scripts/highcharts.js"></script>
     <script src="Scripts/highcharts-more.js"></script>
     <script src="Scripts/forecast.js"></script>
     <script>       
         function clearChartFilters() {
             $(".filter").removeClass("active");
+        }
+
+        function clearUnitButtons() {
+            $(".unit").removeClass("active");
         }
 
         $(document).ready(function () {
@@ -22,7 +28,8 @@
             $("#submit-city").click(function (ev) {
                 var cityName = $(".city-name").val();
                 forecast.queryForecast(cityName, function (data) {
-                    forecast.buildChart("temperature", cityName);
+                    var filter = $(".dropdown-filter").find($(".active")).attr("id");
+                    forecast.buildChart(filter, cityName);
                 });
 
                 $(".chart-container").show();
@@ -34,6 +41,21 @@
                 clearChartFilters();
                 target.className += " active";
                 forecast.buildChart(target.id, $(".city-name").val());
+            });  
+
+            $(".unit").click(function () {
+                clearUnitButtons();
+                $(this).addClass("active");
+
+                switch ($(this).attr("id")) {
+                    case "metric":
+                        forecast.setMetric(true);
+                        break;
+
+                    case "imperial":
+                        forecast.setMetric(false);
+                        break;
+                }
             });
         });
     </script>
@@ -64,14 +86,30 @@
             </div>          
         </div>      
         <div class="chart-container">
-            <hr />
-            <div class="container">
-                <ul class="nav nav-pills">
-                    <li class="active filter" id="temperature" role="presentation"><a><span>Temperature</span></a></li>
-                    <li class="filter" id="humidity" role="presentation"><a><span>Humidity</span></a></li>
-                    <li class="filter" id="pressure" role="presentation"><a><span>Pressure</span></a></li>
-                    <li class="filter" id="windSpeed" role="presentation"><a><span>Wind Speed</span></a></li>
-                </ul>
+            <hr />      
+            <div class="container">    
+                <div class="dropdown chart-modifier">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-menu-unit" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Units<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown-menu-unit">
+                        <li class="unit active" id="metric"><a>Metric</a></li>
+                        <li class="unit" id="imperial"><a>Imperial</a></li>                      
+                    </ul>
+                </div>
+
+                <div class="dropdown chart-modifier">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-menu-filter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Filters<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-filter" aria-labelledby="dropdown-menu-filter">
+                        <li class="active filter" id="temperature"><a>Temperature</a></li>
+                        <li class="filter" id="humidity"><a>Humidity</a></li>
+                        <li class="filter" id="pressure"><a>Pressure</a></li>
+                        <li class="filter" id="windSpeed"><a>Wind Speed</a></li>
+                        <li class="filter" id="cloudiness"><a>Cloud Coverage</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="chart" id="forecast-chart"></div>
         </div>

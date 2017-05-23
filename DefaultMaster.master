@@ -7,14 +7,11 @@
     <meta charset="utf-8">
     <title>Dat Nguyen</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link href="Styles/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
     <link href="Styles/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="Styles/main.css" rel="stylesheet" type="text/css" />
-       
+    <link href="Styles/main.css" rel="stylesheet" type="text/css" />       
     <script src="Scripts/jquery-3.1.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
-
     <asp:ContentPlaceHolder id="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -31,24 +28,20 @@
                     <a href="./" class="navbar-brand list-inline">
                         <p>Dat Nguyen</p>
                     </a>
-                </div>
-                
+                </div>                
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="./">Home</a></li>
                         <li><a href="CodeExample.aspx">Code Example</a></li>                      
-                        <li><a href="WeatherFinder.aspx">Weather Finder</a></li>  
+                        <li><a href="WeatherFinder.aspx">Weather Forecast</a></li>  
                         <li><a href="CurrencyConverter.aspx">Currency Converter</a></li>
                         <li><a href="MotivationalQuote.aspx">Motivational Quote</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-
         <div class="main-content">
             <asp:ContentPlaceHolder id="MainContent" runat="server"></asp:ContentPlaceHolder>
         </div>
-
         <footer class="footer-links">
             <div class="container">
                 <ul class="list-unstyled">
