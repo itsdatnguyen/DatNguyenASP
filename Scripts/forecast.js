@@ -4,9 +4,19 @@
     isMetric: true,
     filter: "",
 
-    setMetric: function (isMetric) {
+    updateMetric: function (isMetric) {
         this.isMetric = isMetric;
         this.buildChart(this.filter, this.forecastData.city.name);
+    },
+
+    isUnitMetric: function (unit) {
+        switch (unit) {
+            case "metric":
+                return true;
+
+            case "imperial":
+                return false;
+        }
     },
 
     isValidCode: function (code) {
@@ -130,8 +140,8 @@
         this.chart.update({});
     },
 
-    buildChart: function (filter, cityName) {
-        switch (filter) {
+    buildChart: function (cityName) {
+        switch (this.filter) {
             case "temperature":
                 var temperature = "Temperature";
                 if (this.isMetric) {
@@ -175,7 +185,6 @@
                 this.updateChart(this.getSnowPoints(), "5 Day Snow Volume Forecast", cityName, "Snowfall (mm)");
                 break;*/
         }
-        this.filter = filter;
     },
 
     initializeForecast: function (elementId) {

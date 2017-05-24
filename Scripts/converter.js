@@ -87,7 +87,7 @@ var converter = {
         }
     },
 
-    addOnFinishListener: function (callback) {
+    onFinishLoading: function (callback) {
         this.onFinishEvent = callback;
     }
 }

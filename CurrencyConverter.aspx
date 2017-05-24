@@ -2,16 +2,38 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
     <script src="Scripts/converter.js"></script>
-
+    <script src="Scripts/utility.js"></script>
 <script>
+    function updateInput(cookieKey, $formElement, defaultValue) {
+        var cookie = readCookie(cookieKey);
+        if (cookie != "undefined" && cookie) {
+            $formElement.val(cookie);
+        }
+        else {
+            $formElement.val(defaultValue);
+        }
+    }
+
+    function loadCookies() {
+        updateInput("currency-type-1", $("#currency-type-1"), "USD");
+        updateInput("currency-type-2", $("#currency-type-2"), "CAD");
+    }
+
     $(document).ready(function () {
         converter.initializeConverter([$("#currency-type-1"), $("#currency-type-2")]);
         converter.registerConversion($("#currency-amount-1"), $("#currency-amount-2"));
         converter.registerConversion($("#currency-amount-2"), $("#currency-amount-1"));   
 
-        converter.addOnFinishListener(function () {
+        converter.onFinishLoading(function () {
             $(".conversion-container").removeClass("hidden");
             $(".loading-widget").addClass("hidden");
+            $(".currency-input").val("0.00");
+
+            loadCookies();
+        });
+
+        $(".currency-select").change(function () {
+            createCookie($(this).attr("id"), $(this).val(), 2);
         });
     });
     </script>
@@ -28,12 +50,12 @@
                     <div class="conversion-container hidden">
                         <form class="form-inline">
                             <div class="form-group">
-                                <input class="form-control" id="currency-amount-1" type="text" aria-describedby="#currency-type-1" />
-                                <select class="form-control" id="currency-type-1"></select>
+                                <input class="form-control currency-input" id="currency-amount-1" type="text" aria-describedby="#currency-type-1" />
+                                <select class="form-control currency-select" id="currency-type-1"></select>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" id="currency-amount-2" type="text" aria-describedby="#currency-type-2" />
-                                <select class="form-control" id="currency-type-2"></select>
+                                <input class="form-control currency-input" id="currency-amount-2" type="text" aria-describedby="#currency-type-2" />
+                                <select class="form-control currency-select" id="currency-type-2"></select>
                             </div>
                         </form>
                     </div>

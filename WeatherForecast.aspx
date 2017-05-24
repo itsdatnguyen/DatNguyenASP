@@ -11,6 +11,7 @@
     </style>
     <script src="Scripts/highcharts.js"></script>
     <script src="Scripts/highcharts-more.js"></script>
+    <script src="Scripts/utility.js"></script>
     <script src="Scripts/forecast.js"></script>
     <script>       
         function clearChartFilters() {
@@ -21,49 +22,94 @@
             $(".unit").removeClass("active");
         }
 
+        /**
+         * Try to update form with cookies then run forecast query 
+         */
+        function loadCookies() {
+            var cityName = readCookie("cityName");
+            if (cityName != "undefined" && cityName) {
+                $(".city-name").val(cityName);
+
+                var unit = readCookie("unit");
+                if (unit != "undefined" && unit) {
+                    clearUnitButtons();
+                    $("#" + unit).addClass("active");
+                }
+
+                var filter = readCookie("filter");
+                if (filter != "undefined" && filter) {
+                    clearChartFilters();
+                    $("#" + filter).addClass("active");
+                }
+                queryCity(cityName);
+            }
+        }
+
+        /**
+         * Runs a forecast query with form element parameters
+         * @param cityName 
+         */
+        function queryCity(cityName) {
+
+            forecast.queryForecast(cityName, function (data) {
+                var filter = $(".dropdown-filter").find($(".active")).attr("id");
+                forecast.filter = filter;
+
+                var unit = $(".dropdown-unit").find($(".active")).attr("id");
+                forecast.isMetric = forecast.isUnitMetric(unit);
+
+                forecast.buildChart(cityName);
+
+                $("#city-output").html("");
+                $(".chart-container").removeClass("hidden");
+
+                createCookie("cityName", cityName, 2);
+
+            }, function () {
+                $("#city-output").html("City was not found.");
+                $("#city-output").addClass("text-danger");
+
+            }, function () {
+                $(".loading-widget").addClass("hidden");
+            });
+        }
+
         $(document).ready(function () {
             forecast.initializeForecast("forecast-chart");
+            loadCookies();
 
             $("#submit-city").click(function (ev) {
-                var cityName = $(".city-name").val();
                 $(".loading-widget").removeClass("hidden");
                 $(".chart-container").addClass("hidden");
 
-                forecast.queryForecast(cityName, function (data) {
-                    if (forecast.isValidCode(data.cod)) {
-                        var filter = $(".dropdown-filter").find($(".active")).attr("id");
-                        forecast.buildChart(filter, cityName); 
-                        $("#city-output").html("");
-                    }               
-                    $(".chart-container").removeClass("hidden");
-                }, function () {
-                    $("#city-output").html("City was not found.");
-                    $("#city-output").addClass("text-danger");
-
-                }, function () {
-                    $(".loading-widget").addClass("hidden");
-                });
+                queryCity($(".city-name").val());
 
                 ev.preventDefault();
             });
 
             $(".filter").click(function (element) {
                 clearChartFilters();
-                $(this).className += " active";
-                forecast.buildChart($(this).attr("id"), $(".city-name").val());
+                $(this).addClass("active");
+
+                forecast.filter = $(this).attr("id");
+                forecast.buildChart($(".city-name").val());
+
+                createCookie("filter", $(this).attr("id"), 2);
             });  
 
             $(".unit").click(function () {
                 clearUnitButtons();
                 $(this).addClass("active");
 
+                createCookie("unit", $(this).attr("id"), 2);
+
                 switch ($(this).attr("id")) {
                     case "metric":
-                        forecast.setMetric(true);
+                        forecast.updateMetric(true);
                         break;
 
                     case "imperial":
-                        forecast.setMetric(false);
+                        forecast.updateMetric(false);
                         break;
                 }
             });
@@ -101,7 +147,7 @@
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-menu-unit" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         Units<span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown-menu-unit">
+                    <ul class="dropdown-menu dropdown-unit" aria-labelledby="dropdown-menu-unit">
                         <li class="unit active" id="metric"><a>Metric</a></li>
                         <li class="unit" id="imperial"><a>Imperial</a></li>                      
                     </ul>
