@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Weather Forecast" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="WeatherForecast.aspx.cs" Inherits="Default2" %>
+﻿<%@ Page Title="5 Day Weather Forecast" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="WeatherForecast.aspx.cs" Inherits="Default2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
     <style>
@@ -26,20 +26,31 @@
 
             $("#submit-city").click(function (ev) {
                 var cityName = $(".city-name").val();
+                $(".loading-widget").removeClass("hidden");
+                $(".chart-container").addClass("hidden");
+
                 forecast.queryForecast(cityName, function (data) {
-                    var filter = $(".dropdown-filter").find($(".active")).attr("id");
-                    forecast.buildChart(filter, cityName);
+                    if (forecast.isValidCode(data.cod)) {
+                        var filter = $(".dropdown-filter").find($(".active")).attr("id");
+                        forecast.buildChart(filter, cityName); 
+                        $("#city-output").html("");
+                    }               
                     $(".chart-container").removeClass("hidden");
+                }, function () {
+                    $("#city-output").html("City was not found.");
+                    $("#city-output").addClass("text-danger");
+
+                }, function () {
+                    $(".loading-widget").addClass("hidden");
                 });
 
                 ev.preventDefault();
             });
 
             $(".filter").click(function (element) {
-                var target = element.currentTarget;
                 clearChartFilters();
-                target.className += " active";
-                forecast.buildChart(target.id, $(".city-name").val());
+                $(this).className += " active";
+                forecast.buildChart($(this).attr("id"), $(".city-name").val());
             });  
 
             $(".unit").click(function () {
@@ -77,13 +88,12 @@
                 <div class="form-group">
                     <asp:TextBox ID="txtCity" runat="server" placeholder="City" CssClass="form-control city-name"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="This field is required." ControlToValidate="txtCity"></asp:RequiredFieldValidator>                    
-                    <br />
-                    <asp:Label ID="lblOutput" runat="server" Text=""></asp:Label>
-                    <br />
+                    <p id="city-output"></p>
                     <input type="submit" class="btn btn-primary" value="Get Forecast" id="submit-city"/>
                 </div>  
             </div>          
         </div>      
+        <div class="loading-widget hidden"></div>
         <div class="chart-container hidden">
             <hr />      
             <div class="container">    

@@ -5,6 +5,7 @@
 var converter = {
     key: "64ee3e0e3059f67b253bb4632781bb03",
     quotes: {},
+    onFinishEvent: null,
 
     // gets all the world currencies
     getWorldCurrencies: function (callback) {
@@ -20,6 +21,10 @@ var converter = {
                 dropdowns[i].append($("<option></option").attr("value", element).html(currencies[element]));
             });
         };
+
+        if (this.onFinishEvent != null) {
+            this.onFinishEvent();
+        }
     },
 
     // converts currency from the first conversion object to the second
@@ -80,5 +85,9 @@ var converter = {
             rate: rate,
             value: value
         }
+    },
+
+    addOnFinishListener: function (callback) {
+        this.onFinishEvent = callback;
     }
 }

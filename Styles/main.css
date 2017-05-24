@@ -198,3 +198,9 @@ th {
   padding-top: 20px;
   margin-top: 20px;
 }
+.loading-widget {
+  background: url(../images/loadingicon.gif) no-repeat center center;
+  width: 192px;
+  height: 192px;
+  margin: 0 auto;
+}

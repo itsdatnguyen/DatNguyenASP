@@ -25,12 +25,16 @@
         var quoteAuthorClass = ".quote-author";
 
         $(document).ready(function () {
+
             $("#get-random-quote").click(function (event) {
                 displayRandomQuote();
                 event.preventDefault();
             });
 
             setupQuotes("Content/motivationalquotes.txt", function (data) {
+                $(".quote-container").removeClass("hidden");
+                $(".loading-widget").addClass("hidden");
+
                 quotesObject = data;
                 displayRandomQuote();
             });           
@@ -44,7 +48,8 @@
                 <div class="panel-heading">
                     <h1><%: Page.Title %></h1>
                 </div>
-                <div class="panel-body">
+                <div class="loading-widget"></div>
+                <div class="panel-body quote-container hidden">
                     <blockquote>
                         <p class="quote"></p>
                         <footer class="quote-author"></footer>

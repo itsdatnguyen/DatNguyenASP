@@ -9,12 +9,34 @@
         this.buildChart(this.filter, this.forecastData.city.name);
     },
 
-    queryForecast: function (cityName, callback) {
+    isValidCode: function (code) {
+        if (code == "200") {
+            return true;
+        }
+        else {
+            return false;
+        }
+    },
+
+    queryForecast: function (cityName, successCallback, failureCallback, alwaysCallback) {
         $.getJSON("http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&mode=json&units=metric&appid=6402e473e5743ba258ec0facd59dea01",
             function (data) {
-                this.forecastData = data;
-                callback(data.list);
-        }.bind(this));      
+
+            })
+            .done(function (data) {
+                if (this.isValidCode(data.cod)) {
+                    this.forecastData = data;
+                    successCallback(data);
+                }
+            }.bind(this))
+
+            .fail(function (jqxhr, textStatus, error) {
+                failureCallback(jqxhr, textStatus, error);
+            })
+
+            .always(function () {
+                alwaysCallback();
+            });      
     },
 
     getTemperaturePoints: function () {
@@ -118,15 +140,15 @@
                 else {
                     temperature += " (°F)";
                 }
-                this.updateChart(this.getTemperaturePoints(), "5 Day Temperature Forecast", cityName, temperature);
+                this.updateChart(this.getTemperaturePoints(), "Temperature Forecast", cityName, temperature);
                 break;
 
             case "humidity":
-                this.updateChart(this.getHumidityPoints(), "5 Day Humidity Forecast", cityName, "Humidity (%)");
+                this.updateChart(this.getHumidityPoints(), "Humidity Forecast", cityName, "Humidity (%)");
                 break;
 
             case "pressure":
-                this.updateChart(this.getPressurePoints(), "5 Day Pressure Forecast", cityName, "Pressure (hPa)");
+                this.updateChart(this.getPressurePoints(), "Pressure Forecast", cityName, "Pressure (hPa)");
                 break;
 
             case "windSpeed":
@@ -137,11 +159,11 @@
                 else {
                     speed += " (mph)";
                 }
-                this.updateChart(this.getWindSpeedPoints(), "5 Day Wind Speed Forecast", cityName, speed);
+                this.updateChart(this.getWindSpeedPoints(), "Wind Speed Forecast", cityName, speed);
                 break;
 
             case "cloudiness":
-                this.updateChart(this.getCloudinessPoints(), "5 Day Cloud Coverage Forecast", cityName, "Coverage (%)");
+                this.updateChart(this.getCloudinessPoints(), "Cloud Coverage Forecast", cityName, "Coverage (%)");
                 break;
 
                 /*

@@ -8,6 +8,11 @@
         converter.initializeConverter([$("#currency-type-1"), $("#currency-type-2")]);
         converter.registerConversion($("#currency-amount-1"), $("#currency-amount-2"));
         converter.registerConversion($("#currency-amount-2"), $("#currency-amount-1"));   
+
+        converter.addOnFinishListener(function () {
+            $(".conversion-container").removeClass("hidden");
+            $(".loading-widget").addClass("hidden");
+        });
     });
     </script>
 </asp:Content>
@@ -19,16 +24,19 @@
                     <h1><%: Page.Title %></h1>
                 </div>
                 <div class="panel-body">
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <input class="form-control" id="currency-amount-1" type="text" aria-describedby="#currency-type-1" />
-                            <select class="form-control" id="currency-type-1"></select>
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" id="currency-amount-2" type="text" aria-describedby="#currency-type-2" />
-                            <select class="form-control" id="currency-type-2"></select>
-                        </div>
-                    </form>
+                    <div class="loading-widget"></div>
+                    <div class="conversion-container hidden">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <input class="form-control" id="currency-amount-1" type="text" aria-describedby="#currency-type-1" />
+                                <select class="form-control" id="currency-type-1"></select>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="currency-amount-2" type="text" aria-describedby="#currency-type-2" />
+                                <select class="form-control" id="currency-type-2"></select>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>   

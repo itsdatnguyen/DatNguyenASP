@@ -26,32 +26,12 @@ public partial class Default2 : System.Web.UI.Page
     {
         //Session[WeatherForecast.CITY_NAME_KEY] = txtCity.Text;
         GetWeather(txtCity.Text);
-        panWidgets.Visible = true;       
+        panWidgets.Visible = true;
     }
 
     public void GetWeather(string cityName)
     {
         PopulateCurrentWeather(cityName);
-        //PopulateForecast(cityName);
-    }
-
-    public void PopulateForecast(string cityName)
-    {
-        try
-        {
-            List<WeatherPoint> forecast = WeatherForecast.QueryWeatherForecast(cityName);
-
-            List<float> temperatures = new List<float>();
-            foreach (WeatherPoint point in forecast)
-            {
-                temperatures.Add(point.Temperature);
-            }
-        }
-        catch(Exception e)
-        {
-            Console.Out.WriteLine(e.Message);
-            lblOutput.Text = "Error, city is invalid";
-        }
     }
 
     public void PopulateCurrentWeather(string cityName)
