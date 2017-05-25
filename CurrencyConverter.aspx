@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
     <script src="Scripts/converter.js"></script>
-    <script src="Scripts/utility.js"></script>
 <script>
     function updateInput(cookieKey, $formElement, defaultValue) {
         var cookie = readCookie(cookieKey);

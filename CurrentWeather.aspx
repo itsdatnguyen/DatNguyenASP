@@ -42,13 +42,15 @@
                     <p>Powered by the OpenWeatherMap <a href="http://openweathermap.org/">API.</a></p>
                 </div>
             </aside>
-            <div class="container col-sm-8">
+            <div class="container col-sm-7">
                 <h1><%:Page.Title %></h1>            
                 <div class="form-group">
-                    <asp:TextBox ID="txtCity" runat="server" placeholder="City" CssClass="form-control city-name"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="This field is required." ControlToValidate="txtCity"></asp:RequiredFieldValidator>                    
-                    <p><asp:Label ID="lblOutput" runat="server" Text=""></asp:Label></p>
-                    <asp:Button ID="btnSubmit" runat="server" Text="Get Current Weather" OnClick="btnSubmit_Click" CssClass="btn btn-primary weather-submit" />
+                    <form runat="server">
+                        <asp:TextBox ID="txtCity" runat="server" placeholder="City" CssClass="form-control city-name"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="This field is required." ControlToValidate="txtCity"></asp:RequiredFieldValidator>                    
+                        <p><asp:Label ID="lblOutput" runat="server" Text=""></asp:Label></p>
+                        <asp:Button ID="btnSubmit" runat="server" Text="Get Current Weather" OnClick="btnSubmit_Click" CssClass="btn btn-primary weather-submit" />
+                    </form>
                 </div>  
             </div>          
         </div>

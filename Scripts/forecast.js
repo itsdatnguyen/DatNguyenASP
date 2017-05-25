@@ -6,7 +6,7 @@
 
     updateMetric: function (isMetric) {
         this.isMetric = isMetric;
-        this.buildChart(this.filter, this.forecastData.city.name);
+        this.buildChart(this.forecastData.city.name);
     },
 
     isUnitMetric: function (unit) {

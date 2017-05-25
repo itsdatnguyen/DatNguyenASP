@@ -13,12 +13,14 @@
     <link href="Styles/main.css" rel="stylesheet" type="text/css" />       
     <script src="Scripts/jquery-3.1.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/utility.js"></script>
+    <script src="Scripts/main.js"></script>
     <asp:ContentPlaceHolder id="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="main">
+        <div class="navbar navbar-inverse navbar-fixed-top header">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -40,19 +42,33 @@
                 </div>
             </div>
         </div>
-        <div class="main-content">
+        <div class="body">
             <asp:ContentPlaceHolder id="MainContent" runat="server"></asp:ContentPlaceHolder>
         </div>
-        <footer class="footer-links">
-            <div class="container">
-                <ul class="list-unstyled">
-                    <li><a href="mailto:dat.nguyen.quang7@gmail.com">dat.nguyen.quang7@gmail.com</a></li>
-                    <li><a href="https://itsdatnguyen.github.io/home/">Github</a></li>
-                    <li><a href="https://www.linkedin.com/in/datquangnguyen/">LinkedIn</a></li>
-                </ul>
-                <p>&copy; <%: DateTime.Now.Year %> - Dat Nguyen</p>
+        <footer class="footer">
+            <div class="footer-border"></div>
+            <div class="footer-content">
+                <div class="container">
+                    <div class="col-sm-4">
+                        <h3>About</h3>
+                        <p>This website serves as a hub for useful utilities. My hope is that this website will will be useful to you as it is useful to me. Here you can find the weather, convert currency or get a motivational quote.</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Links</h3>
+                        <p><a href="mailto:dat.nguyen.quang7@gmail.com">dat.nguyen.quang7@gmail.com</a></p>
+                        <p><a href="https://itsdatnguyen.github.io/home/">Github</a></p>
+                        <p><a href="https://www.linkedin.com/in/datquangnguyen/">LinkedIn</a></p>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Cat Facts</h3>
+                        <p class="cat-facts"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <span>&copy; <%: DateTime.Now.Year %> - Dat Nguyen</span>
             </div>
         </footer>
-    </form>
+    </div>
 </body>
 </html>

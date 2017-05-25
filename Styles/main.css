@@ -179,28 +179,47 @@ th {
 .box-shadow {
   box-shadow: 5px 5px 20px grey;
 }
-.main-content {
+.header {
+  background-color: #1a1f26;
+  background-image: none;
+}
+.body {
   padding-top: 50px;
 }
 .aside-element {
-  border: 3px #77ceee solid;
+  border: 3px #60c5eb solid;
   padding: 15px;
   margin: 30px 0px 20px 0px;
-  background-color: #d1eef9;
+  background-color: #bbe6f6;
   box-shadow: 5px 5px 20px grey;
   display: block;
 }
 .aside-element img {
   width: 100%;
 }
-.footer-links {
-  border-top: 3px #77ceee solid;
-  padding-top: 20px;
-  margin-top: 20px;
-}
 .loading-widget {
   background: url(../images/loadingicon.gif) no-repeat center center;
   width: 192px;
   height: 192px;
   margin: 0 auto;
+}
+footer {
+  color: white;
+  margin-top: 40px;
+}
+footer .footer-border {
+  background-color: #586782;
+  width: 100%;
+  height: 20px;
+}
+footer .footer-content {
+  background-color: #394354;
+  padding: 5px;
+}
+footer .footer-content a {
+  color: #cccccc;
+}
+footer .footer-copyright {
+  background-color: #1a1f26;
+  padding: 10px;
 }

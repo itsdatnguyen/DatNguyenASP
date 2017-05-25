@@ -1,17 +1,29 @@
 ﻿@import "less/library.less";
 
-@theme-primary-light: lighten(#33b5e5, 35);
-@theme-primary-dark: lighten(#33b5e5, 15);
+@theme-primary-light: lighten(#33b5e5, 30);
+@theme-primary-dark: lighten(#33b5e5, 10);
+
+@theme-black: #394354;
 
 @theme-border: 3px @theme-primary-dark solid;
+@footer-border: 10px lighten(@theme-black, 20) solid;
 
 @theme-box-shadow: 5px 5px 20px grey;
+
+@footer-3d-rotation: 10deg;
+
+@footer-height: 237px;
 
 .box-shadow{
     box-shadow: @theme-box-shadow;
 }
 
-.main-content {
+.header{
+	background-color: darken(@theme-black, 15);
+	background-image: none;
+}
+
+.body {
     padding-top: 50px;
 }
 
@@ -28,15 +40,32 @@
     }
 }
 
-.footer-links{
-    border-top: @theme-border;
-    padding-top: 20px;
-    margin-top: 20px;
-}
-
 .loading-widget{
 	background:url(../images/loadingicon.gif) no-repeat center center;
 	width: 192px;
 	height: 192px;
 	margin: 0 auto;
+}
+
+footer{
+	color: white;
+	margin-top: 40px;
+
+	.footer-border{
+		background-color: lighten(@theme-black, 15);
+		width: 100%;
+		height: 20px;
+	}
+    .footer-content{  	
+		background-color: @theme-black;
+		padding: 5px;
+
+	    a{
+	    	color: darken(white, 20);
+	    }
+    }
+    .footer-copyright{
+		background-color: darken(@theme-black, 15);
+		padding: 10px;
+    }
 }

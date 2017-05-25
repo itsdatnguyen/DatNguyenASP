@@ -8,10 +8,12 @@
         .chart-modifier{
             display: inline;
         }
+        .chart{
+            margin-top: 20px;
+        }
     </style>
     <script src="Scripts/highcharts.js"></script>
     <script src="Scripts/highcharts-more.js"></script>
-    <script src="Scripts/utility.js"></script>
     <script src="Scripts/forecast.js"></script>
     <script>       
         function clearChartFilters() {
@@ -129,13 +131,15 @@
                     <p>Powered by the OpenWeatherMap <a href="http://openweathermap.org/">API.</a></p>
                 </div>
             </aside>
-            <div class="container col-sm-8">
+            <div class="container col-sm-7">
                 <h1><%:Page.Title %></h1>            
                 <div class="form-group">
-                    <asp:TextBox ID="txtCity" runat="server" placeholder="City" CssClass="form-control city-name"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="This field is required." ControlToValidate="txtCity"></asp:RequiredFieldValidator>                    
-                    <p id="city-output"></p>
-                    <input type="submit" class="btn btn-primary" value="Get Forecast" id="submit-city"/>
+                    <form runat="server">
+                        <asp:TextBox ID="txtCity" runat="server" placeholder="City" CssClass="form-control city-name"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="This field is required." ControlToValidate="txtCity"></asp:RequiredFieldValidator>                    
+                        <p id="city-output"></p>
+                        <input type="submit" class="btn btn-primary" value="Get Forecast" id="submit-city"/>
+                    </form>
                 </div>  
             </div>          
         </div>      
@@ -166,7 +170,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="chart" id="forecast-chart"></div>
+            <div class="chart box-shadow" id="forecast-chart"></div>
         </div>
     </div>
 </asp:Content>

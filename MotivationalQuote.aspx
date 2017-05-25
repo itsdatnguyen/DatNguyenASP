@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="Motivational Quote" Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true" CodeFile="MotivationalQuote.aspx.cs" Inherits="Default2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
-    <script src="Scripts/utility.js"></script>
     <script>
         function setupQuotes(filename, callback) {
             $.getJSON(filename, function (data) {
